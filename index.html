@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        label, input, button {
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        li {
+            list-style-type: none;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Add Products</h1>
+    <form id="productForm">
+        <label for="productName">Product Name:</label>
+        <input type="text" id="productName" required>
+        <label for="productPrice">Product Price:</label>
+        <input type="number" id="productPrice" step="0.01" required>
+        <label for="productDescription">Product Description:</label>
+        <input type="text" id="productDescription" required>
+        <button type="submit">Add Product</button>
+    </form>
+    <h2>Product List</h2>
+    <ul id="productList"></ul>
+    
+    <script>
+        document.getElementById('productForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            let productName = document.getElementById('productName').value;
+            let productPrice = document.getElementById('productPrice').value;
+            let productDescription = document.getElementById('productDescription').value;
+
+            let li = document.createElement('li');
+            li.innerHTML = `<strong>${productName}</strong> - $${parseFloat(productPrice).toFixed(2)}<br><em>${productDescription}</em>`;
+
+            document.getElementById('productList').appendChild(li);
+
+            document.getElementById('productName').value = '';
+            document.getElementById('productPrice').value = '';
+            document.getElementById('productDescription').value = '';
+        });
+    </script>
+</body>
+</html>
+
